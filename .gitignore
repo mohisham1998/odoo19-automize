@@ -1,0 +1,32 @@
+# Docker volumes (managed by Docker)
+odoo-web-data/
+odoo-db-data/
+
+# Odoo filestore and sessions
+filestore/
+sessions/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
