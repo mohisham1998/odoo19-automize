@@ -27,11 +27,19 @@ jobs:
           script: |
             cd /root/odoo
             git pull origin main
+            echo "=== Checking module files ==="
+            ls -la odoo-source/addons/odoo_api_customization/
             docker compose down
             docker compose up -d
-            sleep 10
+            sleep 15
+            echo "=== Checking module in container ==="
+            docker compose exec -T web ls -la /mnt/extra-addons/odoo_api_customization/ || echo "Module directory not found!"
+            echo "=== Updating Odoo module list ==="
             docker compose exec -T web odoo --addons-path=/mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons -d postgres -u base --stop-after-init || true
             docker compose restart web
+            sleep 5
+            echo "=== Checking Odoo logs ==="
+            docker compose logs web --tail=30 | grep -i "odoo_api" || echo "Module not found in logs"
             echo "Deployment completed successfully!"
 
       - name: Verify deployment
