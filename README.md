@@ -67,3 +67,4 @@ To restore:
 ```bash
 cat backup.sql | docker exec -i odoo-db-1 psql -U odoo postgres
 ```
+# CI/CD Pipeline Active
