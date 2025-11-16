@@ -26,6 +26,9 @@ jobs:
           port: 22
           script: |
             cd /root/odoo
+            echo "=== Resetting local changes ==="
+            git fetch origin
+            git reset --hard origin/main
             git pull origin main
             echo "=== Checking module files ==="
             ls -la odoo-source/addons/odoo_api_customization/
