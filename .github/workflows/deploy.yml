@@ -27,6 +27,10 @@ jobs:
           script: |
             cd /root/odoo
             git pull origin main
+            docker compose down
+            docker compose up -d
+            sleep 10
+            docker compose exec -T web odoo --addons-path=/mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons -d postgres -u base --stop-after-init || true
             docker compose restart web
             echo "Deployment completed successfully!"
 
