@@ -51,4 +51,10 @@ jobs:
           port: 22
           script: |
             cd /root/odoo
-            docker ps | grep odoo-web
+            echo "=== Container Status ==="
+            docker ps | grep odoo
+            echo "=== Testing /test endpoint ==="
+            sleep 5
+            curl -s http://localhost:8069/test || echo "Endpoint test failed"
+            echo "=== Module files on host ==="
+            ls -la odoo-source/addons/ | grep odoo_api || echo "Module not found on host"
