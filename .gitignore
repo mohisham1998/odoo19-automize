@@ -12,6 +12,7 @@ __pycache__/
 *$py.class
 *.so
 .Python
+*.pyc
 
 # Logs
 *.log
@@ -30,3 +31,6 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+
+# Odoo source .git folder (we don't want nested git repos)
+odoo-source/.git/
